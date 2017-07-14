@@ -9,6 +9,7 @@ public class ArrayStorage {
 
     void clear() {
         storage=new Resume[10000];
+        count =0;
     }
 
     void save(Resume r) {
@@ -26,13 +27,17 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i <count; i++) {
-            if (storage[i].uuid.equals(uuid)){
-                storage[i]=null;
+        for (int i = 0; i <count ; i++) {
+            if (uuid.equals(storage[i].uuid)){
+                for (int j = i; j <count-1 ; j++) {
+                    storage[j]=storage[j+1];
+
+                }
 
             }
 
         }
+        count--;
     }
 
     /**
