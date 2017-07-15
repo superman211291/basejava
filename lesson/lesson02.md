@@ -32,10 +32,10 @@
   - <a href="http://www.intuit.ru/studies/courses/16/16/lecture/27115">Модификаторы доступа. Область Видимости.</a>
 
 ### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) [Домашнее задание](https://drive.google.com/open?id=0B_4NpoQW1xfpWUxUVWx5MFpCZkE)
-> Правка к видео: ArrayStorage.delete() - вместо `storage[i] = null` нужно `storage[size-1] = null`
+> Правка к видео: com.urise.webapp.storage.ArrayStorage.delete() - вместо `storage[i] = null` нужно `storage[size-1] = null`
 
 - Прочитать <a href="http://www.intuit.ru/studies/courses/16/16/lecture/27113?page=4">Соглашения по именованию.</a>
-- Реализовать `ArrayStorage.update`
-- Сделать проверки: в `update/delete/get` - резюме есть в storage, в `save`- нет в storage: `System.out.println("Resume ...")`.
+- Реализовать `com.urise.webapp.storage.ArrayStorage.update`
+- Сделать проверки: в `update/delete/get` - резюме есть в storage, в `save`- нет в storage: `System.out.println("com.urise.webapp.model.Resume ...")`.
 - Сделать в save проверку на переполнениe: `System.out.println("...")`.
-- Избавится от дублирования в коде `ArrayStorage`
+- Избавится от дублирования в коде `com.urise.webapp.storage.ArrayStorage`

@@ -20,6 +20,6 @@
 [см. коммит Lesson06 prepare to HW06](https://github.com/JavaWebinar/basejava/tree/9cbab019ee274b212d8c52a44c93a887175866bc)
 
 - Сделать рефакторинг тестов: `saveOverflow` должно быть только для Array реализаций.
-- Рефакторинг: в конструктор Resume добавить второй параметр `fullName`
-- Сделать рефакторинг всех реализаций `Storage`: заменить метод `Resume[] getAll()` на `List<Resume> getAllSorted()`
+- Рефакторинг: в конструктор com.urise.webapp.model.Resume добавить второй параметр `fullName`
+- Сделать рефакторинг всех реализаций `Storage`: заменить метод `com.urise.webapp.model.Resume[] getAll()` на `List<com.urise.webapp.model.Resume> getAllSorted()`
 - Реализовать до конца `MapUuidStorage`. Подумать что еще может быть search key в реализации на основе Map.

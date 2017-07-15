@@ -24,5 +24,5 @@
 - <a href="https://ru.wikipedia.org/wiki/Шаблонный_метод_(шаблон_проектирования)">Шаблонный метод</a>
 
 ### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) [Домашнее задание](https://drive.google.com/open?id=0B_4NpoQW1xfpdkdlV2xPbE5VM2c)
-- Закончить реализацию `AbstractArrayStorage`, `ArrayStorage`, `SortedArrayStorage` (`SortedArrayStorage` хранит элементы отсортированными, сортировать весь массив не надо).
-- Сделать проверку `ArrayStorage.update`
+- Закончить реализацию `AbstractArrayStorage`, `com.urise.webapp.storage.ArrayStorage`, `SortedArrayStorage` (`SortedArrayStorage` хранит элементы отсортированными, сортировать весь массив не надо).
+- Сделать проверку `com.urise.webapp.storage.ArrayStorage.update`

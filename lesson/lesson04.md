@@ -39,6 +39,6 @@ e.printStackTrace(); - выводит стактрайс
 
 ## ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Подсказки по HW4
 - `SortedArrayStorageTest` должен запускаться с `SortedArrayStorage`
-- `ArrayStorageTest` c  `ArrayStorage`
+- `ArrayStorageTest` c  `com.urise.webapp.storage.ArrayStorage`
 
 как вариант, добавить конструктор в `AbstractArrayStorageTest`, который инициализирует `Storage storage`,а в наследниках добавить конструкторы, которые будут вызывать super с нужным хранилищем
