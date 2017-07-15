@@ -21,8 +21,11 @@ public class MainArray {
         System.out.println("Size: " + arrayStorage.size());
 
         printAll();
+
+
         arrayStorage.delete(r1.uuid);
         printAll();
+
         arrayStorage.clear();
         printAll();
 
