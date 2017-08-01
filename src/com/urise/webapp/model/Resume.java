@@ -14,6 +14,7 @@ public class Resume {
         this.uuid = uuid;
     }
 
+
     // Unique identifier
 
 
