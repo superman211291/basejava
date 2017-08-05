@@ -17,31 +17,21 @@ public class ArrayStorage {
     }
 
     public void update(Resume r){
-        boolean flag = false;
-        for (int i = 0; i <size ; i++) {
-            if (r.getUuid().equals(storage[i].getUuid())) {
-                storage[i]=r;
-                flag=true;
-                break;
-            }
-        }
-        if (!flag)
-        System.out.println("ERROR UPDATE");
-
-
-
+        int result = avalible(r);
+       if (result!=-1){
+           storage[result]=r;
+       }
+       else
+           System.out.println("UPDATE ERROR");
     }
 
     public void save(Resume r) {
-        storage[size]=r;
-
-        if (storage[size]!=null)
-                size++;
-        else if (size==storage.length)
-            System.out.println("SAVE ERROR OVERFLOW");
-        else
-            System.out.println("SAVE ERROR");
-
+       if (absence(r)){
+           storage[size]=r;
+           size++;
+       }
+       else
+           System.out.println("SAVE ERROR");
     }
 
     public Resume get(String uuid) {
@@ -57,19 +47,13 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        boolean flag = false;
-        for (int i = 0; i <size ; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
-                System.arraycopy(storage, i + 1, storage, i, size - 1 - i);
-                size--;
-                flag =true;
-                break;
-
-            }
+        int result = absence(uuid);
+        if (result!=-1){
+            System.arraycopy(storage,result+1,storage,result,size-1-result);
+            size--;
         }
-            if (!flag)
-                System.out.println("ERROR DELETE");
-
+        else
+            System.out.println("DELETE ERROR");
     }
 
     /**
@@ -85,6 +69,30 @@ public class ArrayStorage {
     public int size(){
         return size;
     }
+
+    private int avalible(Resume r){
+        for (int i = 0; i <size ; i++) {
+            if (storage[i]==r)
+                return i;
+        }
+        return -1;
+    }
+    private boolean absence(Resume r){
+        for (int i = 0; i <size ; i++) {
+            if (storage[i]==r){
+                return false;
+            }
+        }
+        return true;
+    }
+    private int absence(String uuid){
+        for (int i = 0; i <size ; i++) {
+            if (uuid.equals(storage[i].getUuid()))
+                return i;
+        }
+        return -1;
+    }
+
 
 
 

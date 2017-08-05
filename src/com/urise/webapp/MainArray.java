@@ -29,7 +29,7 @@ public class MainArray {
 
 
         arrayStorage.delete(r1.getUuid());
-        r2.setUuid("test");
+
 
        arrayStorage.update(r2);
 
