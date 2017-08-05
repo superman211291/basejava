@@ -26,7 +26,7 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-       if (absence(r)){
+       if (absence(r)&&size!=storage.length){
            storage[size]=r;
            size++;
        }
