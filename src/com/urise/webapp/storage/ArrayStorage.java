@@ -72,14 +72,14 @@ public class ArrayStorage {
 
     private int avalible(Resume r){
         for (int i = 0; i <size ; i++) {
-            if (storage[i]==r)
+            if (r.getUuid().equals(storage[i].getUuid()))
                 return i;
         }
         return -1;
     }
     private boolean absence(Resume r){
         for (int i = 0; i <size ; i++) {
-            if (storage[i]==r){
+            if (r.getUuid().equals(storage[i].getUuid())){
                 return false;
             }
         }
