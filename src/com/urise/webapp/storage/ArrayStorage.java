@@ -19,7 +19,7 @@ public class ArrayStorage {
     }
 
     public void update(Resume r){
-        int result = avalible(r);
+        int result = avalible(r.getUuid());
        if (result!=-1){
            storage[result]=r;
        }
@@ -28,16 +28,16 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        boolean flag = false;
-       if (avalible(r)==-1&&size!=storage.length){
-           storage[size]=r;
-           size++;
-           flag=true;
+       int result = avalible(r.getUuid());
+       if (result!=-1){
+           System.out.println("SAVE ERROR");
        }
        if (size==storage.length)
            System.out.println("Save overflow error");
-       else if (!flag)
-           System.out.println("SAVE ERROR");
+       else{
+           storage[size]=r;
+           size++;
+       }
     }
 
     public Resume get(String uuid) {
@@ -75,13 +75,6 @@ public class ArrayStorage {
         return size;
     }
 
-    private int avalible(Resume r){
-        for (int i = 0; i <size ; i++) {
-            if (r.getUuid().equals(storage[i].getUuid()))
-                return i;
-        }
-        return -1;
-    }
     private int avalible(String uuid){
         for (int i = 0; i <size ; i++) {
             if (uuid.equals(storage[i].getUuid()))
