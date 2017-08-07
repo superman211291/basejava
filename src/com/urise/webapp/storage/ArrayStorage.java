@@ -12,7 +12,9 @@ public class ArrayStorage {
     private int size = 0;
 
     public void clear() {
-        storage=new Resume[10000];
+        for (int i = 0; i <size ; i++) {
+            storage[i]=null;
+        }
         size =0;
     }
 
@@ -26,28 +28,31 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-       if (absence(r)&&size!=storage.length){
+        boolean flag = false;
+       if (avalible(r)==-1&&size!=storage.length){
            storage[size]=r;
            size++;
+           flag=true;
        }
-       else
+       if (size==storage.length)
+           System.out.println("Save overflow error");
+       else if (!flag)
            System.out.println("SAVE ERROR");
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i <size ; i++) {
-            Resume r = storage[i];
-            if (r!=null) {
-                if (uuid.equals(r.getUuid()))
-                    return r;
-            }
-        }
-        System.out.println("ERROR GET");
-        return null;
+        int result = avalible(uuid);
+       if (result!=-1)
+           return storage[result];
+       else {
+           System.out.println("GET ERROR");
+           return null;
+
+       }
     }
 
     public void delete(String uuid) {
-        int result = absence(uuid);
+        int result = avalible(uuid);
         if (result!=-1){
             System.arraycopy(storage,result+1,storage,result,size-1-result);
             size--;
@@ -77,22 +82,13 @@ public class ArrayStorage {
         }
         return -1;
     }
-    private boolean absence(Resume r){
-        for (int i = 0; i <size ; i++) {
-            if (r.getUuid().equals(storage[i].getUuid())){
-                return false;
-            }
-        }
-        return true;
-    }
-    private int absence(String uuid){
+    private int avalible(String uuid){
         for (int i = 0; i <size ; i++) {
             if (uuid.equals(storage[i].getUuid()))
                 return i;
         }
         return -1;
     }
-
 
 
 

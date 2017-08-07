@@ -28,7 +28,7 @@ public class MainArray {
         printAll();
 
 
-        arrayStorage.delete(r1.getUuid());
+        arrayStorage.delete(r3.getUuid());
 
 
        arrayStorage.update(r2);
