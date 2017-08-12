@@ -2,56 +2,55 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
-    private int count = 0;
+public class ArrayStorage extends AbstractArrayStorage {
+
 
     public void clear() {
-        storage=new Resume[10000];
-        count =0;
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
     }
 
     public void save(Resume r) {
-        storage[count]=r;
-        count++;
+        storage[size] = r;
+        size++;
     }
 
-    public Resume get(String uuid) {
-        for (int i=0;i<storage.length;i++){
-            if (uuid.equals(storage[i].getUuid())){
-                return storage[i];
-            }
-        }
-        return null;
-    }
+
 
     public void delete(String uuid) {
-        for (int i = 0; i <count ; i++) {
-            if (uuid.equals(storage[i].getUuid())){
-                System.arraycopy(storage, i + 1, storage, i, count - 1 - i);
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].getUuid())) {
+                System.arraycopy(storage, i + 1, storage, i, size - 1 - i);
 
             }
 
         }
-        count--;
+        size--;
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    public Resume[] getAll()
-    {
-        Resume[] resumes = new Resume[count];
-        System.arraycopy(storage, 0, resumes, 0, resumes.length);
-       return resumes;
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size());
     }
 
-    public int size(){
-        return count;
+    @Override
+    protected int getindex(String uuid) {
+        int index = -1;
+        for (int i = 0; i <size ; i++) {
+            if (uuid.equals(storage[i].getUuid())){
+                index=i;
+                return index;
+            }
+
+        }
+        return index;
     }
 }
+
