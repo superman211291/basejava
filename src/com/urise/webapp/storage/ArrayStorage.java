@@ -11,8 +11,7 @@ import java.util.Arrays;
 public class ArrayStorage extends AbstractArrayStorage {
 
     public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
+        super.clear();
     }
 
     public void update(Resume r) {
@@ -36,14 +35,7 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index == -1) {
-            System.out.println("Resume " + uuid + " not exist");
-        } else {
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
-        }
+        super.delete(uuid);
     }
 
     public Resume[] getAll() {
