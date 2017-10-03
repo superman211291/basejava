@@ -10,14 +10,6 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void clear() {
-        super.clear();
-    }
-
-    public void update(Resume r) {
-       super.update(r);
-    }
-
     public void save(Resume r) {
         if (getIndex(r.getUuid()) != -1) {
             System.out.println("Resume " + r.getUuid() + " already exist");
@@ -30,11 +22,14 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     public void delete(String uuid) {
-        super.delete(uuid);
-    }
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+        int index = getIndex(uuid);
+        if (index == -1) {
+            System.out.println("Resume " + uuid + " not exist");
+        } else {
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+        }
     }
 
     protected int getIndex(String uuid) {
