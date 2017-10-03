@@ -13,6 +13,7 @@ public class SortedArrayStorage extends AbstractArrayStorage{
 
     @Override
     public void update(Resume r) {
+        super.update(r);
 
     }
 
