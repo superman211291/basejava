@@ -7,39 +7,22 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage{
 
+
     @Override
-    public void save(Resume r) {
-        int index = getIndex(r.getUuid());
+    protected void insertElement(Resume r, int index) {
         int rindex = -index-1;
-        if (index>0) {
-            System.out.println("Resume " + r.getUuid() + " already exist");
-        }
-        else if (size >= STORAGE_LIMIT) {
-            System.out.println("Storage overflow");
-        }
-        else if(size!=0) {
-                if (index<0){
-                    System.arraycopy(storage,rindex,storage,rindex+1,size-rindex);
-                    storage[rindex]=r;
-                    size++;
-                }
+        if(size!=0&&index<0) {
+                System.arraycopy(storage,rindex,storage,rindex+1,size-rindex);
+                storage[rindex]=r;
         }
         else{
             storage[size]=r;
-            size++;
         }
     }
 
     @Override
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index<0) {
-            System.out.println("Resume " + uuid + " not exist");
-        } else {
-            System.arraycopy(storage,index+1,storage,index,size-index-1);
-            storage[size-1]=null;
-            size--;
-        }
+    protected void fillDeletedElement(int index) {
+        System.arraycopy(storage,index+1,storage,index,size-index-1);
     }
 
     @Override
