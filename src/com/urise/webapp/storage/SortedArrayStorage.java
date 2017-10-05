@@ -40,7 +40,6 @@ public class SortedArrayStorage extends AbstractArrayStorage{
             storage[size-1]=null;
             size--;
         }
-
     }
 
     @Override
