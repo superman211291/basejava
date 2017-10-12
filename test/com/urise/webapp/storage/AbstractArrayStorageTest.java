@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Created by superman on 11.10.17.
  */
 public class AbstractArrayStorageTest {
-    private Storage storage;
+    private Storage storage=new ArrayStorage();
 
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
