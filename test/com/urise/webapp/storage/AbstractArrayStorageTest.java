@@ -14,9 +14,12 @@ import static org.junit.Assert.*;
 /**
  * Created by superman on 11.10.17.
  */
-public class AbstractArrayStorageTest {
-    private Storage storage=new ArrayStorage();
+public abstract class AbstractArrayStorageTest {
+    protected Storage storage;
 
+    public AbstractArrayStorageTest(Storage storage) {
+        this.storage=storage;
+    }
 
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
@@ -82,5 +85,12 @@ public class AbstractArrayStorageTest {
     public void getNotExist() throws Exception {
         storage.get("dummy");
     }
+
+    public Resume getOfIndex (int i){
+        Resume[] r = storage.getAll();
+        return r[i];
+    }
+
+
 
 }

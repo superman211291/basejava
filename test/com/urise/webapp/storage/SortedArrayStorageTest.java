@@ -1,26 +1,20 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.model.Resume;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by superman on 11.10.17.
+ * Created by superman on 13.10.17.
  */
-public class ArrayStorageTest extends AbstractArrayStorageTest {
+public class SortedArrayStorageTest extends AbstractArrayStorageTest {
 
-
-    public ArrayStorageTest() {
-        super(new ArrayStorage());
+    public SortedArrayStorageTest() {
+        super(new SortedArrayStorage());
     }
 
     @Test
     public void fillDeletedElement() throws Exception {
-
     }
 
     @Test
