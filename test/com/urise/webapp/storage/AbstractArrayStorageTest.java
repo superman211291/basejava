@@ -1,6 +1,8 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exeption.ExistStorageException;
 import com.urise.webapp.exeption.NotExistStorageException;
+import com.urise.webapp.exeption.StorageException;
 import com.urise.webapp.model.Resume;
 import org.junit.After;
 import org.junit.Assert;
@@ -9,6 +11,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -64,7 +67,24 @@ public abstract class AbstractArrayStorageTest {
         Resume resume = new Resume("uuid4");
         storage.save(resume);
         Assert.assertTrue(storage.get("uuid4").equals(resume));
-
+        try {
+            storage.save(resume);
+            Assert.fail();
+        }
+        catch (ExistStorageException ex){
+            Assert.assertThat(ex.getMessage(),is("Resume uuid4 already exist"));
+        }
+        try {
+            String s = null;
+            for (int i = 5; i <10006 ; i++) {
+                s = "uuid"+i;
+                storage.save(new Resume(s));
+              }
+            Assert.fail();
+        }
+        catch (StorageException ex){
+            Assert.assertThat(ex.getMessage(),is("Storage overflow"));
+        }
     }
 
     @Test
@@ -85,12 +105,5 @@ public abstract class AbstractArrayStorageTest {
     public void getNotExist() throws Exception {
         storage.get("dummy");
     }
-
-    public Resume getOfIndex (int i){
-        Resume[] r = storage.getAll();
-        return r[i];
-    }
-
-
 
 }

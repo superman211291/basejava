@@ -13,16 +13,4 @@ public class SortedArrayStorageTest extends AbstractArrayStorageTest {
         super(new SortedArrayStorage());
     }
 
-    @Test
-    public void fillDeletedElement() throws Exception {
-    }
-
-    @Test
-    public void insertElement() throws Exception {
-    }
-
-    @Test
-    public void getIndex() throws Exception {
-    }
-
 }

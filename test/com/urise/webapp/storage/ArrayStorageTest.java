@@ -18,17 +18,6 @@ public class ArrayStorageTest extends AbstractArrayStorageTest {
         super(new ArrayStorage());
     }
 
-    @Test
-    public void fillDeletedElement() throws Exception {
 
-    }
-
-    @Test
-    public void insertElement() throws Exception {
-    }
-
-    @Test
-    public void getIndex() throws Exception {
-    }
 
 }
