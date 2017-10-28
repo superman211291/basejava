@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -18,17 +19,22 @@ import static org.junit.Assert.*;
  * Created by superman on 11.10.17.
  */
 public abstract class AbstractArrayStorageTest {
+    private static final String UUID_1 = "uuid1";
+    private static final String UUID_2 = "uuid2";
+    private static final String UUID_3 = "uuid3";
 
-    protected Storage storage;
-    public static Resume resume=new Resume("uuid4");
+
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage=storage;
     }
 
-    private static final String UUID_1 = "uuid1";
-    private static final String UUID_2 = "uuid2";
-    private static final String UUID_3 = "uuid3";
+    protected  Storage storage;
+    protected static Resume resume=new Resume("uuid4");
+    protected static Resume r = new Resume(UUID_1);
+    protected static Resume[] r1 = {new Resume(UUID_1),new Resume(UUID_2), new Resume(UUID_3)};
+
+
 
     @Before
     public void setUp() throws Exception {
@@ -51,7 +57,6 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void update() throws Exception {
-        Resume r = new Resume(UUID_1);
         Assert.assertFalse(storage.get(UUID_1)==r);
         storage.update(r);
         Assert.assertTrue(storage.get(UUID_1)==r);
@@ -59,9 +64,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void getAll() throws Exception {
-       Resume[] r = storage.getAll();
-       Resume[] r1 = {new Resume(UUID_1),new Resume(UUID_2), new Resume(UUID_3)};
-       Assert.assertArrayEquals(r,r1);
+        Resume[] resumes = storage.getAll();
+        Assert.assertArrayEquals(resumes,r1);
     }
 
     @Test
@@ -80,9 +84,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void get() throws Exception {
-        Resume r =storage.get(UUID_1);
         Resume r1 = new Resume(UUID_1);
-        Assert.assertEquals(r,r1);
+        Assert.assertThat(r,is(r1));
 
     }
 
@@ -108,8 +111,12 @@ public abstract class AbstractArrayStorageTest {
                 s = "uuid"+i;
                 storage.save(new Resume(s));
             }
-            storage.save(new Resume("uuid"));
+        }
+        catch (Exception ex){
             Assert.fail();
+        }
+        try {
+            storage.save(new Resume("uuid"));
         }
         catch (StorageException ex){
             Assert.assertThat(ex.getMessage(),is("Storage overflow"));
