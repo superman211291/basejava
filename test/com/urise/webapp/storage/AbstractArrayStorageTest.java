@@ -18,7 +18,9 @@ import static org.junit.Assert.*;
  * Created by superman on 11.10.17.
  */
 public abstract class AbstractArrayStorageTest {
+
     protected Storage storage;
+    public static Resume resume=new Resume("uuid4");
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage=storage;
@@ -64,27 +66,10 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void save() throws Exception {
-        Resume resume = new Resume("uuid4");
         storage.save(resume);
-        Assert.assertTrue(storage.get("uuid4").equals(resume));
-        try {
-            storage.save(resume);
-            Assert.fail();
-        }
-        catch (ExistStorageException ex){
-            Assert.assertThat(ex.getMessage(),is("Resume uuid4 already exist"));
-        }
-        try {
-            String s = null;
-            for (int i = 5; i <10006 ; i++) {
-                s = "uuid"+i;
-                storage.save(new Resume(s));
-              }
-            Assert.fail();
-        }
-        catch (StorageException ex){
-            Assert.assertThat(ex.getMessage(),is("Storage overflow"));
-        }
+        Assert.assertThat(resume,is(storage.get("uuid4")));
+        existstorageexeption();
+        storageowerflow();
     }
 
     @Test
@@ -104,6 +89,31 @@ public abstract class AbstractArrayStorageTest {
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() throws Exception {
         storage.get("dummy");
+    }
+
+    private void existstorageexeption() {
+        try {
+            storage.save(resume);
+            Assert.fail();
+        }
+        catch (ExistStorageException ex) {
+            Assert.assertThat(ex.getMessage(), is("Resume uuid4 already exist"));
+        }
+    }
+
+    private void storageowerflow(){
+        try {
+            String s = null;
+            for (int i = 5; i <10001; i++) {
+                s = "uuid"+i;
+                storage.save(new Resume(s));
+            }
+            storage.save(new Resume("uuid"));
+            Assert.fail();
+        }
+        catch (StorageException ex){
+            Assert.assertThat(ex.getMessage(),is("Storage overflow"));
+        }
     }
 
 }
